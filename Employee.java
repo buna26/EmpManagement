@@ -27,29 +27,25 @@ class EmpDetails{
 	public String getDesignation() { return designation; }
 
 	public boolean isValidEmail(String email){ 
-		if(email.indexOf('@')!= -1)
-			return true;
-		return false;
+		return email.indexOf('@') > -1 && email.endsWith(".com") ? true : false;
 	}
 	
 	public void info() {
-        System.out.println("Name : "+ firstname +" "+ lastname);
+    System.out.println("Name : "+ firstname +" "+ lastname);
 		System.out.println("Employee ID : "+ empID);
-		if(!isValidEmail(email)){
+		if(!isValidEmail(email))
 		    System.out.println("Email ID is not valid");
-		}else{
+		else
 		    System.out.println("Email ID : "+email);
-		}
 		System.out.println("Designation : " + designation);
-    }
+  }
 }
 
 class Employee{
 	public static void main(String args[]){
-		
 		EmpDetails emp = new EmpDetails("Riya", "Das", "riyadas@gmail.com", "Analyst");
-		
+    EmpDetails emp1 = new EmpDetails("Raktim", "Deka", "raktimdek.adad", "Bekar Shontan");
 		emp.info();
-		
+    emp1.info();
 	}
 }
