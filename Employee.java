@@ -47,7 +47,7 @@ class EmpDetails{
 class Employee{
 	public static void main(String args[]){
 		
-		EmpDetails emp = new EmpDetails("Raktim", "Deka", "riyadas@gmail.com", "Analyst");
+		EmpDetails emp = new EmpDetails("Riya", "Das", "riyadas@gmail.com", "Analyst");
 		
 		emp.info();
 		
