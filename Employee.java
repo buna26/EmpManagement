@@ -9,7 +9,7 @@ class EmpDetails{
 	EmpDetails(String firstname, String lastname, String email, String designation){
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.empID = firstname.hashCode();
+		this.empID = Math.abs(firstname.hashCode());
 		this.email = email;
 		this.designation = designation;
 	}	
@@ -47,7 +47,7 @@ class EmpDetails{
 class Employee{
 	public static void main(String args[]){
 		
-		EmpDetails emp = new EmpDetails("Riya", "Das", "riyadas@gmail.com", "Analyst");
+		EmpDetails emp = new EmpDetails("Raktim", "Deka", "riyadas@gmail.com", "Analyst");
 		
 		emp.info();
 		
