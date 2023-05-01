@@ -1,4 +1,5 @@
 import java.util.*;
+import java.security.SecureRandom;
 
 class EmpDetails{
 	private String firstname, lastname;
@@ -17,41 +18,64 @@ class EmpDetails{
 	}	
 	
 	public void setFristName(String firstname) { this.firstname = firstname; }
-	public String getFirstName() { return firstname; }
+	public String getFirstName() { return this.firstname; }
 	
 	public void setLastName(String lastname) { this.lastname = lastname; }
-	public String getLastName() { return lastname; }
+	public String getLastName() { return this.lastname; }
 	
 	public void setEmail(String email) { this.email = email; }
-	public String getEmail() { return email; }
+	public String getEmail() { return this.email; }
 	
 	public void setDesignation(String designation) { this.designation = designation; }
-	public String getDesignation() { return designation; }
+	public String getDesignation() { return this.designation; }
 
 	public boolean isValidEmail(String email){ 
-		return email.indexOf('@') > -1 && email.indexOf("outlook") > -1 && email.endsWith(".com") ? true : false;
+		return this.email.indexOf('@') > -1 && this.email.endsWith(".com") ? true : false;
 	}
 	
 	private String defaultPassword(){
-        String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$&";
-		int length = 10;
-        char [] password = new char[length];
-        for (int i = 0; i < length; i++){
-            int rand = (int) (Math.random() * passwordSet.length());
-            password[i] = passwordSet.charAt(rand);
+	    int length = 10;
+      char password[] = new char[length];
+      for(int i = 0; i < length; i++) {
+        int ch = new SecureRandom().nextInt(4 - 1) + 1, rand;
+        switch(ch) {
+          case 1: { 
+            rand = new SecureRandom().nextInt(90 - 65) + 65;
+            password[i] = (char)(rand);
+            break;
+            }
+          case 2: {
+            rand = new SecureRandom().nextInt(122 - 97) + 97;
+            password[i] = (char)(rand);
+            break;
+            }
+          case 3: {
+            rand = new SecureRandom().nextInt(57 - 48) + 48;
+            password[i] = (char)(rand);
+            break;
+            }
+          case 4: {
+            rand = new SecureRandom().nextInt(47 - 33) + 33;
+            password[i] = (char)(rand);
+            break;
+            }
+        default: continue;
         }
-        return new String(password);
-    }
+      }
+    return new String(password);
+  }
 	
 	public void info() {
-		System.out.println("Name : "+ firstname +" "+ lastname);
+		System.out.println("Name : "+ this.firstname +" "+ lastname);
 		System.out.println("Employee ID : "+ empID);
+
 		if(!isValidEmail(email))
 		    System.out.println("Email ID is not valid");
 		else
 		    System.out.println("Email ID : "+ email);
+
 		System.out.println("Designation : "+ designation);
-        System.out.println("Your Default Password is "+ password);
+    System.out.println("Your Default Password is "+ password);
   }
 }
 
