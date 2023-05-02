@@ -63,7 +63,35 @@ class EmpDetails{
         }
       }
     return new String(password);
-  }
+	}
+	
+	private String strengthCheck(String password){
+		int uppercaseCount = 0;
+		int lowercaseCount = 0;
+		int digitCount = 0;
+		String specialCharSet = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
+		int specialCharCount = 0;
+		
+		for(int i = 0; i < password.length(); i++){
+			if(password.charAt(i) >= 65 && password.charAt(i) <= 90){	uppercaseCount++;	}
+			
+			if(password.charAt(i) >= 97 && password.charAt(i) <= 122){	lowercaseCount++;	}
+			
+			if(password.charAt(i) >= 48 && password.charAt(i) <= 57){	digitCount++;	}
+			
+			if(specialCharSet.contains(Character.toString(password.charAt(i)))) {	specialCharCount++;    }
+		}
+		
+		if(uppercaseCount < 2 && digitCount <= 2 && password.length() < 8 && specialCharCount < 1){ return "Weak"; }
+		else if(uppercaseCount <= 3 && digitCount < 5 && specialCharCount < 2 && password.length() <= 15){ return "Medium"; }
+		else { return "Strong"; }
+		
+	}
+	
+	public void setPassword(String password){
+		System.out.println(password);
+		System.out.println(strengthCheck(password));
+	}
 	
 	public void info() {
 		System.out.println("Name : "+ this.firstname +" "+ lastname);
@@ -75,7 +103,7 @@ class EmpDetails{
 		    System.out.println("Email ID : "+ email);
 
 		System.out.println("Designation : "+ designation);
-    System.out.println("Your Default Password is "+ password);
+		System.out.println("Your Default Password is "+ password);
   }
 }
 
@@ -85,5 +113,7 @@ class Employee{
 		EmpDetails emp1 = new EmpDetails("Raktim", "Deka", "raktimdek@outlook.com", "Bekar Shontan");
 		emp.info();
 		emp1.info();
+		
+		emp.setPassword("Riya@345A#");
 	}
 }
